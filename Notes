@@ -4,8 +4,9 @@ The general plan I'm thinking is:
 
 1) Use the "alarm clock" functionality of the PaPiRus HAT to boot the raspberry pi every 15 minutes
 
-2) create a DASH script that checks for any attached USB device on startup. If there is an attached USB device,
-the DASH script stops and does nothing else.
+2) create a DASH script that checks for any attached USB device on startup as
+ per : https://www.raspberrypi.org/documentation/linux/usage/rc-local.md
+If there is an attached USB device, the DASH script stops and does nothing else.
 
 If there is not a USB device attached, the DASH script would update the rp.weather repo from github
 to get the latest code, then execute the code to pull back the latest weather, and write that to
