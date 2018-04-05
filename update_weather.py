@@ -31,10 +31,10 @@ try:
         for day in boston.daily[0:3]:
             day = dict(day = date.strftime(weekday, '%a'),
                        sum = day.summary,
-                       tempMin = day.temperatureMin,
-                       tempMax = day.temperatureMax
+                       tempMin = round(day.temperatureMin),
+                       tempMax = round(day.temperatureMax)
                        )
-            output += ('{day}: {sum} Temp range: {tempMin} - {tempMax}\n'.format(**day))
+            output += ('{day}: {sum} {tempMin}F - {tempMax}F\n'.format(**day))
             weekday += timedelta(days=1)
     output += ('Last Updated: {0}'.format(datetime.now()))
 
