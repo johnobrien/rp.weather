@@ -38,7 +38,7 @@ try:
             weekday += timedelta(days=1)
     output += ('Last Updated: {0}'.format(datetime.now()))
 
-    text.write(output, fsize=12)
+    text.write(output, size=12)
 except:
     # Couldn't access Dark Sky, so fail gracefully
     # probably writing to a log.
