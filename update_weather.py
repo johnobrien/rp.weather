@@ -26,8 +26,8 @@ text = PapirusText()
 
 try:
     with forecast(key, *LEXINGTON) as lexington:
-        text.write("{0}\nLast updated: {1}".format(lexington.daily.summary,
-                                                   datetime.datetime.now().strftime("%y-%m-%d %H:%M").encode('ascii', 'replace')))
+        text.write("{0}\nLast updated: {1}".format(lexington.daily.summary.encode('ascii', 'ignore'),
+                                                   datetime.datetime.now().strftime("%y-%m-%d %H:%M").encode('ascii', 'ignore')))
 
 except:
     # Couldn't access Dark Sky, so fail gracefully
