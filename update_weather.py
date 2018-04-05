@@ -29,10 +29,10 @@ try:
     weekday = date.today()
     with forecast(key, *LEXINGTON) as boston:
         for day in boston.daily[0:3]:
-            day = dict(day = date.strftime(weekday, '%a'),
-                       sum = day.summary,
-                       tempMin = round(day.temperatureMin),
-                       tempMax = round(day.temperatureMax)
+            day = dict(day=date.strftime(weekday, '%a'),
+                       sum=day.summary,
+                       tempMin=round(day.temperatureMin),
+                       tempMax=round(day.temperatureMax)
                        )
             output += ('{day}: {sum} {tempMin}F - {tempMax}F\n'.format(**day))
             weekday += timedelta(days=1)
