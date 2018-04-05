@@ -4,6 +4,9 @@
 
 import os
 from darksky import forecast
+import datetime
+
+LEXINGTON = 42.4430, 71.2290
 
 try:
     from papirus import PapirusText
@@ -19,9 +22,13 @@ key = os.getenv("dark_sky_api_key")
 if not key:
     raise Exception("DarkSky API Key not set. Set DarkSky environment variable in the local environment and try again.")
 
-
-lexington = forecast(key, 42.4430, 71.2290)
-
 text = PapirusText()
+try:
+    with forecast(key, *LEXINGTON) as lexington:
+        text.write(lexington.daily.summary)
+        text.write("Late updated: {0}".format(datetime.datetime.now()))
 
-text.write("hello world")
+except:
+    # Couldn't access Dark Sky, so fail gracefully
+    # probably writing to a log.
+    pass
