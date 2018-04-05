@@ -18,3 +18,9 @@ At the end of the DASH script, the pi is shutdown.
 
 3) The rp.weather repo will include a python script that pulls from the Dark Sky API (https://darksky.net/dev)
 the weather, and pushes that forecast to the epaper along with a timestamp.
+
+10:00 PM
+
+Got the base python script working (yah!)
+
+Now, on to getting the bash script working to detect a keyboard on startup etc.
