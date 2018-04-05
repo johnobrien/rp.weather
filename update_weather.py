@@ -4,7 +4,7 @@
 
 import os
 from darksky import forecast
-import datetime
+from datetime import date, timedelta, datetime
 
 LEXINGTON = 42.4430, 71.2290
 
@@ -23,12 +23,22 @@ if not key:
     raise Exception("DarkSky API Key not set. Set DarkSky environment variable in the local environment and try again.")
 
 text = PapirusText()
+output = ""
 
 try:
-    with forecast(key, *LEXINGTON) as lexington:
-        text.write("{0}\nLast updated: {1}".format(lexington.daily.summary.encode('ascii', 'ignore'),
-                                                   datetime.datetime.now().strftime("%y-%m-%d %H:%M").encode('ascii', 'ignore')))
+    weekday = date.today()
+    with forecast(key, *LEXINGTON) as boston:
+        for day in boston.daily[0:3]:
+            day = dict(day = date.strftime(weekday, '%a'),
+                       sum = day.summary,
+                       tempMin = day.temperatureMin,
+                       tempMax = day.temperatureMax
+                       )
+            output += ('{day}: {sum} Temp range: {tempMin} - {tempMax}\n'.format(**day))
+            weekday += timedelta(days=1)
+    output += ('Last Updated: {0}'.format(datetime.now()))
 
+    text.write(output)
 except:
     # Couldn't access Dark Sky, so fail gracefully
     # probably writing to a log.
