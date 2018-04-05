@@ -25,10 +25,9 @@ if not key:
 text = PapirusText()
 try:
     with forecast(key, *LEXINGTON) as lexington:
-        text.write(lexington.daily.summary)
-        text.write("{0}\n, Late updated: {1}".format(datetime.datetime.now()))
+        text.write("{0}\nLast updated:{1}".format(lexington.daily.summary, datetime.datetime.now()))
 
 except:
     # Couldn't access Dark Sky, so fail gracefully
     # probably writing to a log.
-    pass
+    raise
