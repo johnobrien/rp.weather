@@ -23,10 +23,12 @@ if not key:
     raise Exception("DarkSky API Key not set. Set DarkSky environment variable in the local environment and try again.")
 
 text = PapirusText()
+
+
 try:
     with forecast(key, *LEXINGTON) as lexington:
         text.write("{0}\nLast updated: {1}".format(lexington.daily.summary,
-                                                  datetime.datetime.today()))
+                                                   datetime.datetime.now().strftime("%y-%m-%d %H:%M")))
 
 except:
     # Couldn't access Dark Sky, so fail gracefully
