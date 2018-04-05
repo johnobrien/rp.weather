@@ -34,11 +34,11 @@ try:
                        tempMin=round(day.temperatureMin),
                        tempMax=round(day.temperatureMax)
                        )
-            output += ('{day}: {sum} {tempMin}F - {tempMax}F\n'.format(**day))
+            text.AddText('{day}: {sum} {tempMin}F - {tempMax}F\n'.format(**day), size=12)
             weekday += timedelta(days=1)
-    output += ('Last Updated: {0}'.format(datetime.now()))
+    text.AddText('Last Updated: {0}'.format(datetime.now()), size=12)
 
-    text.write(output, size=12)
+    text.AddText(output, size=12)
 except:
     # Couldn't access Dark Sky, so fail gracefully
     # probably writing to a log.
