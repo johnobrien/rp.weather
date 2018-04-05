@@ -9,7 +9,7 @@ from datetime import date, timedelta, datetime
 LEXINGTON = 42.4430, 71.2290
 
 try:
-    from papirus import PapirusText
+    from papirus import PapirusTextPos
 except ModuleNotFoundError:
     ## The papirus module is not installed
     ## so let's use a dummy class for it that
@@ -22,7 +22,7 @@ key = os.getenv("dark_sky_api_key")
 if not key:
     raise Exception("DarkSky API Key not set. Set DarkSky environment variable in the local environment and try again.")
 
-text = PapirusText()
+text = PapirusTextPos()
 output = ""
 
 try:
@@ -34,11 +34,11 @@ try:
                        tempMin=round(day.temperatureMin),
                        tempMax=round(day.temperatureMax)
                        )
-            text.AddText('{day}: {sum} {tempMin}F - {tempMax}F\n'.format(**day), size=12)
+            output += ('{day}: {sum} \n'.format(**day))
             weekday += timedelta(days=1)
-    text.AddText('Last Updated: {0}'.format(datetime.now()), size=12)
+    output += 'Last Updated: {0}'.format(datetime.now())
 
-    text.AddText(output, size=12)
+    text.AddText(output)
 except:
     # Couldn't access Dark Sky, so fail gracefully
     # probably writing to a log.
