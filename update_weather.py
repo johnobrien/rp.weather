@@ -41,7 +41,7 @@ try:
     # output += 'Last Updated: {0}'.format(datetime.now())
 
     textNImg = PapirusComposite(False)
-    textNImg.AddImg('/assets/icons/cloud.bmp', Id="Top")
+    textNImg.AddImg('/home/pi/rp.weather/assets/icons/cloud.bmp', 20,20,(100,100), Id="Top")
     textNImg.WriteAll()
 except:
     # Couldn't access Dark Sky, so fail gracefully
