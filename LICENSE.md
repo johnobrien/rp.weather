@@ -1,6 +1,6 @@
 This work is licensed under Creative Commons' Attribution-ShareAlike 3.0 United States (CC BY-SA 3.0) - http://creativecommons.org/licenses/by-sa/3.0/us/
 
-If you use these icons, please add a link to weather-iconic (https://github.com/jackd248/weather-iconic/) somewhere on your site or in your app.
+
 
 
 
