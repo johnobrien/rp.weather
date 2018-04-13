@@ -6,8 +6,6 @@ from smbusf import SMBus
 from datetime import datetime, timedelta
 from dateutil import tz
 from prtc import readrtc, writealm, enablealm0
-from papirus import Papirus
-from pwrite_text import write_text
 
 import os
 
@@ -21,8 +19,6 @@ parser.add_argument('delay',
 args=parser.parse_args()
 
 i2cbus = SMBus(1)
-papirus = Papirus()
-papirus.clear()
 
 # time to wait before booting
 delta=timedelta(seconds=args.delay)
@@ -40,5 +36,5 @@ reboottime = reboot.strftime('%H:%M:%S')
 
 # Enable alrm 0
 enablealm0(i2cbus)
-
+print("Current time is {0}".format(datetime.now()))
 print("Reboot time set for {0}".format(reboottime))
