@@ -9,11 +9,11 @@
 # The path to this script needs to be added to /etc/rc.local
 
 if lsusb |grep 'Keyboard'; then
-    echo "Keyboard not present"
+    echo "Keyboard present"
     # git --git-dir=/path/to/kd.weather/dir/on/pi pull
     # python /path/to/update_weather.py/on/pi
     # python /path/to/set_reboot.py/on/pi
     # sudo poweroff
 else
-    echo "Keyboard present"
+    echo "Keyboard not present"
 fi
