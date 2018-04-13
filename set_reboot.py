@@ -40,3 +40,5 @@ reboottime = reboot.strftime('%H:%M:%S')
 
 # Enable alrm 0
 enablealm0(i2cbus)
+
+print("Reboot time set for {0}".format(reboottime))
