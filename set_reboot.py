@@ -14,7 +14,7 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument('delay',
                     nargs='?',
-                    default=3600,
+                    default=60,
                     type=int,
                     help='delay in seconds till reboot, default 3600')
 
