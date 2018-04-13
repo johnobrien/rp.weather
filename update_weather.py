@@ -9,7 +9,7 @@ from datetime import date, timedelta, datetime
 LEXINGTON = 42.4430, 71.2290
 
 try:
-    from papirus import PapirusComposite
+    from papirus import PapirusText
 except ModuleNotFoundError:
     ## The papirus module is not installed
     ## so let's use a dummy class for it that
@@ -38,11 +38,10 @@ try:
                        )
             output += ('{day}: {icon} \n'.format(**day))
             weekday += timedelta(days=1)
-    # output += 'Last Updated: {0}'.format(datetime.now())
+    output += 'Last Updated: {0}'.format(datetime.now())
 
-    textNImg = PapirusComposite(False)
-    textNImg.AddImg('/home/pi/rp.weather/assets/icons/cloud.bmp', 20,20,(100,100), Id="Top")
-    textNImg.WriteAll()
+    text = PapirusText()
+    text.write(output, size = 20)
 except:
     # Couldn't access Dark Sky, so fail gracefully
     # probably writing to a log.
