@@ -12,9 +12,8 @@ if lsusb |grep 'Keyboard'; then
     echo "Keyboard present"
 else
     echo "Keyboard not present"
-    git --git-dir=/home/pi/rp.weather pull
+    git --git-dir=/home/pi/rp.weather/.git pull
     python /home/pi/rp.weather/update_weather.py
-    # python /path/to/set_reboot.py/on/pi
+    # python /home/pi/rp.weather/set_reboot.py
     # sudo poweroff
-
 fi
