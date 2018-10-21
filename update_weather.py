@@ -29,8 +29,8 @@ clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day,
 
 try:
     weekday = date.today()
-    with forecast(key, *LEXINGTON) as boston:
-        for day in boston.daily[0:3]:
+    with forecast(key, *LEXINGTON) as location:
+        for day in location.daily[0:3]:
             day = dict(day=date.strftime(weekday, '%a'),
                        icon=day.icon,
                        tempMin=round(day.temperatureMin),
