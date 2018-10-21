@@ -13,7 +13,7 @@ if lsusb |grep 'Keyboard'; then
     # sudo -u pi python script-to-write-to-epaper-that-keyboard-was-attached
 else
     echo "Keyboard not present"
-    git --git-dir=/home/pi/rp.weather/.git pull
+    # git --git-dir=/home/pi/rp.weather/.git pull
     sudo -u pi python /home/pi/rp.weather/update_weather.py
     # sudo -u pi python /home/pi/rp.weather/set_reboot.py
     # sudo poweroff
