@@ -5,6 +5,7 @@
 # and shuts down the raspberry pi.
 
 # Will probably need to chmod this to executable and being owned by root
+# You can probably use git bash to do this.
 
 # The path to this script needs to be added to /etc/rc.local
 
