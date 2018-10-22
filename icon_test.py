@@ -2,7 +2,7 @@ from time import sleep
 
 from papirus import PapirusComposite
 
-textNImg = PapirusComposite(False, [, rotation=rot])
+textNImg = PapirusComposite(False [, rotation=rot])
 
 icons = ["clear-day.bmp",
           "clear-night.bmp",
