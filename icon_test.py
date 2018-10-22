@@ -20,6 +20,6 @@ prefix = './assets/icons/'
 for icon in icons:
     textNImg.AddText(icon, 10, 10, Id="Icon_Name")
     path = prefix + icon
-    textNImg.AddImg(path, 20, 20, (100,100) Id="Icon_Image")
+    textNImg.AddImg(path, 20, 20, (100,100), Id="Icon_Image")
     textNImg.WriteAll()
     sleep(1)
