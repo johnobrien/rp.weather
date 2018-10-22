@@ -6,17 +6,9 @@ import os
 from darksky import forecast
 from datetime import date, timedelta, datetime
 
-LEXINGTON = 42.4430, 71.2290
+from papirus import PapirusComposite
 
-try:
-    from papirus import PapirusText
-except ModuleNotFoundError:
-    ## The papirus module is not installed
-    ## so let's use a dummy class for it that
-    ## prints out to stdout instead
-    class PapirusText:
-        def write(self, text):
-            print("{0}".format(text))
+LEXINGTON = 42.4430, 71.2290
 
 key = os.getenv("dark_sky_api_key")
 if not key:
@@ -29,20 +21,18 @@ clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day,
 
 try:
     weekday = date.today()
-    with forecast(key, *LEXINGTON) as location:
-        for day in location.daily[0:3]:
-            day = dict(day=date.strftime(weekday, '%a'),
-                       icon=day.icon,
-                       tempMin=round(day.temperatureMin),
-                       tempMax=round(day.temperatureMax)
-                       )
-            output += ('{day}: {icon} \n'.format(**day))
-            weekday += timedelta(days=1)
-    output += 'Last Updated: {0}'.format(datetime.now())
-
-    text = PapirusText()
-    text.write(output, size = 20)
+    textNImg = PapirusComposite(False)
+    with forecast(key, *LEXINGTON) as lexington:
+        long_date_name = date.strftime(weekday, '%A, %b %d')
+        prefix = "./assets/icons/"
+        path = prefix + lexington.daily.icon + ".bmp"
+        textNImg.AddText(long_date_name, 10, 0, size=22, Id="Day Name")
+        textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
+        textNImg.AddText(lexington.daily.summary, 10, 120, size=15, Id="Forecast")
+        textNImg.AddText(str("{:.0f}".format(lexington.temperature))+u"\u00b0", 135, 50, size=45)
+        textNImg.WriteAll()
 except:
-    # Couldn't access Dark Sky, so fail gracefully
-    # probably writing to a log.
+    textNImg.AddText("Error reaching Dark Sky API", 10, 10, Id="Error")
+    textNImg.AddText("Please check the internet settings.", 10, 20, Id="Error")
+    textNImg.WriteAll()
     raise

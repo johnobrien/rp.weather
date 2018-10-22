@@ -2,7 +2,6 @@ from time import sleep
 
 from papirus import PapirusComposite
 
-textNImg = PapirusComposite(False)
 
 icons = ["clear-day.bmp",
           "clear-night.bmp",
@@ -18,8 +17,9 @@ icons = ["clear-day.bmp",
 
 prefix = './assets/icons/'
 for icon in icons:
-    textNImg.AddText(icon, 10, 10, Id="Icon_Name")
     path = prefix + icon
-    textNImg.AddImg(path, 20, 20, (100,100), Id="Icon_Image")
+    textNImg = PapirusComposite(False)
+    textNImg.AddText(icon, 10, 110, Id="Icon_Name")
+    textNImg.AddImg(path, 10, 0, (100,100), Id="Icon_Image")
     textNImg.WriteAll()
     sleep(1)
