@@ -17,17 +17,24 @@ if not key:
 ''' Possible lexington.daily.icon values:
 clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.'''
 
+def format_temp(s):
+    return str("{:.0f}".format(s))+u"\u00b0"
+
 try:
-    weekday = date.today()
     textNImg = PapirusComposite(False)
+    weekday = date.today()
+
     with forecast(key, *LEXINGTON) as lexington:
         long_date_name = date.strftime(weekday, '%A, %b %d')
+        lexington.refresh()
         prefix = "./assets/icons/"
         path = prefix + lexington.daily.icon + ".bmp"
+        low = lexington.daily.data[0]["apparentTemperatureLow"]
+        high = lexington.daily.data[0]["apparentTemperatureHigh"]
         textNImg.AddText(long_date_name, 10, 0, size=22, Id="Day Name")
         textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
-        textNImg.AddText(lexington.daily.summary, 10, 120, size=15, Id="Forecast")
-        textNImg.AddText(str("{:.0f}".format(lexington.temperature))+u"\u00b0", 135, 50, size=45)
+        textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 50, size=35)
+        textNImg.AddText(lexington.hourly.summary, 10, 120, size=15, Id="Forecast")
         textNImg.WriteAll()
 except:
     textNImg.AddText("Error reaching Dark Sky API", 10, 10, Id="Error")
