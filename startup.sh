@@ -9,7 +9,7 @@
 # The path to this script needs to be added to /etc/rc.local
 
 if lsusb |grep 'Keyboard'; then
-    echo "Keyboard present"
+    papirus-write "Keyboard present"
     # sudo -u pi python script-to-write-to-epaper-that-keyboard-was-attached
 else
     echo "Keyboard not present"
