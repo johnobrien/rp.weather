@@ -11,7 +11,6 @@ from papirus import PapirusComposite
 LEXINGTON = 42.4430, 71.2290
 
 key = os.getenv("dark_sky_api_key")
-print(key)
 if not key:
     raise Exception("DarkSky API Key not set. Set DarkSky environment variable in the local environment and try again.")
 
