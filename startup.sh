@@ -15,7 +15,8 @@ if lsusb |grep 'Keyboard'; then
 else
     echo "Keyboard not present"
     # git --git-dir=/home/pi/rp.weather/.git pull
-    sudo -u pi python /home/pi/rp.weather/update_weather.py
+    # https://raspberrypi.stackexchange.com/questions/85185/accessing-exported-environment-variables-in-python
+    sudo --preserve-env -u pi python /home/pi/rp.weather/update_weather.py
     # sudo -u pi python /home/pi/rp.weather/set_reboot.py
     # sudo poweroff
 fi
