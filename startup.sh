@@ -10,7 +10,6 @@
 
 if lsusb |grep 'Keyboard'; then
     papirus-write "Keyboard present"
-    # sudo -u pi python script-to-write-to-epaper-that-keyboard-was-attached
 else
     echo "Keyboard not present"
     # git --git-dir=/home/pi/rp.weather/.git pull
