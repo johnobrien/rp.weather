@@ -24,3 +24,9 @@ the weather, and pushes that forecast to the epaper along with a timestamp.
 Got the base python script working (yah!)
 
 Now, on to getting the bash script working to detect a keyboard on startup etc.
+
+10/21/18
+
+The current probably seems to be that when I run startup.sh, the update_weather.py program
+can't get the dark_sky_api_key from the local environment. And yet, when I run
+update_weather.py directly, it works just fine. Why would that be the case?
