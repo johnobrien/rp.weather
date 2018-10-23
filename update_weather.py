@@ -26,7 +26,6 @@ try:
 
     with forecast(key, *LEXINGTON) as lexington:
         long_date_name = date.strftime(weekday, '%A, %b %d')
-        lexington.refresh()
         prefix = "./assets/icons/"
         path = prefix + lexington.daily.icon + ".bmp"
         low = lexington.daily.data[0]["apparentTemperatureLow"]
