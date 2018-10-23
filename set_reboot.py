@@ -18,7 +18,7 @@ parser.add_argument('alarm',
 
 args=parser.parse_args()
 
-i2cbus = SMBus(1)
+# i2cbus = SMBus(1)
 
 # time to wait before booting
 
