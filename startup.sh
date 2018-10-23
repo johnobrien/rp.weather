@@ -16,7 +16,7 @@ else
     echo "Keyboard not present"
     # git --git-dir=/home/pi/rp.weather/.git pull
     # https://raspberrypi.stackexchange.com/questions/85185/accessing-exported-environment-variables-in-python
-    sudo --preserve-env -u pi python /home/pi/rp.weather/update_weather.py
-    # sudo -u pi python /home/pi/rp.weather/set_reboot.py
+    sudo --preserve-env -u pi /usr/bin/python2.7 /home/pi/rp.weather/update_weather.py
+    # sudo -u pi /usr/bin/python2.7 /home/pi/rp.weather/set_reboot.py
     # sudo poweroff
 fi
