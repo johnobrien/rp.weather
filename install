@@ -1,3 +1,6 @@
 1. run "pip install --trusted-host pypi.python.org -r requirements.txt"
 2. Run "curl -sSL https://pisupp.ly/papiruscode | sudo bash"
 3. Build and install py-smbusf as per the README.md in the py-smbusf directory.
+4. Run "sudo pip install -r requirements.txt" to install all the requirements to root for the machine in question.
+5. Reconfigure /etc/rc.local to launch the startup.sh script on startup, and enable rc.local if it was not already enabled.
+
