@@ -10,8 +10,7 @@
 # The path to this script needs to be added to /etc/rc.local
 
 if lsusb |grep 'Keyboard'; then
-    papirus-write "Keyboard present"
-    papirus-write "startup.sh exiting..."
+    papirus-write "Keyboard present\nstartup.sh exiting."
 else
     echo "Keyboard not present"
     # git --git-dir=/home/pi/rp.weather/.git pull
