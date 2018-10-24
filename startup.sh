@@ -17,5 +17,5 @@ else
     # https://raspberrypi.stackexchange.com/questions/85185/accessing-exported-environment-variables-in-python
     sudo --preserve-env -u pi /usr/bin/python2.7 /home/pi/rp.weather/update_weather.py
     sudo -u pi /usr/bin/python2.7 /home/pi/rp.weather/set_reboot.py
-    # sudo poweroff
+    sudo poweroff
 fi
