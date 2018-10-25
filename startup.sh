@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # The script that on boot checks
 # whether a device with the string "Keyboard",
 # in the description is attached, and if not,

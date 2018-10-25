@@ -31,8 +31,14 @@ try:
         low = lexington.daily.data[0]["apparentTemperatureLow"]
         high = lexington.daily.data[0]["apparentTemperatureHigh"]
         textNImg.AddText(long_date_name, 10, 0, size=22, Id="Day Name")
-        textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
-        textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 50, size=35)
+        try:
+            textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
+        except:
+            textNImg.AddText(lexington.daily.icon, 10,25, Id="Icon")
+
+        textNImg.AddText(lexington.currently.summary, 110, 30, size=15, Id="Summary")
+        textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 50, size=35, Id="TempRange")
+        textNImg.AddText("Powered by Dark Sky", 145,160,size=10, Id="Attribution")
         textNImg.AddText(lexington.hourly.summary, 10, 120, size=15, Id="Forecast")
         textNImg.WriteAll()
 except:
