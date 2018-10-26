@@ -36,9 +36,15 @@ try:
             textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
         except:
             textNImg.AddText(lexington.daily.icon, 10,25, Id="Icon")
-        textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 50, size=35, Id="TempRange")
-        textNImg.AddText("Powered by Dark Sky", 145,164,size=10, Id="Attribution")
+        precipSummary = getattr(lexington.hourly.data[0], "precipType", None)
+        if hasattr(lexington.hourly.data[0], "precipAccumulation"):
+            precipSummary += ": " + int(lexington.hourly.data[0].precipAccumulation) + '"'
+        if precipSummary:
+            offset = len(precipSummary) * 5
+            textNImg.AddText(precipSummary.capitalize(), 170 - offset, 35, size=20, Id="Precipitation")
+        textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
         textNImg.AddText(lexington.hourly.summary, 10, 120, size=15, Id="Forecast")
+        textNImg.AddText("Powered by Dark Sky", 145, 164, size=10, Id="Attribution")
         textNImg.WriteAll()
 except:
     textNImg.AddText("Error reaching Dark Sky API", 10, 10, Id="Error")
