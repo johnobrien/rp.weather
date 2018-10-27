@@ -21,6 +21,7 @@ def format_temp(s):
     return str("{:.0f}".format(s))+u"\u00b0"
 
 try:
+
     textNImg = PapirusComposite(False)
     os.system("sudo hwclock --hctosys")
     weekday = date.today()
@@ -53,6 +54,6 @@ try:
         textNImg.WriteAll()
 except:
     textNImg.AddText("Error reaching Dark Sky API", 10, 10, Id="Error")
-    textNImg.AddText("Please check the internet settings.", 10, 20, Id="Error")
+    textNImg.AddText("{0}".format(weekday), 10, 60, Id="Date")
     textNImg.WriteAll()
     raise
