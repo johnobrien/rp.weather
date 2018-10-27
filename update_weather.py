@@ -29,21 +29,26 @@ try:
         long_date_name = date.strftime(weekday, '%A, %b %d')
         prefix = "./assets/icons/"
         path = prefix + lexington.daily.icon + ".bmp"
-        low = lexington.daily.data[0]["apparentTemperatureLow"]
-        high = lexington.daily.data[0]["apparentTemperatureHigh"]
+        low = None
+        high = None
+        for hour in lexington.hourly[6:21]:
+            if hour.temperature < low or low is None:
+                low = hour.temperature
+            if hour.temperature > high or high is None:
+                high = hour.temperature
         textNImg.AddText(long_date_name, 10, 0, size=22, Id="Day Name")
         try:
             textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
         except:
             textNImg.AddText(lexington.daily.icon, 10,25, Id="Icon")
-        precipSummary = getattr(lexington.hourly.data[0], "precipType", None)
-        if hasattr(lexington.hourly.data[0], "precipAccumulation"):
-            precipSummary += ": " + int(lexington.hourly.data[0].precipAccumulation) + '"'
+        precipSummary = getattr(lexington.daily[0], "precipType", None)
+        if hasattr(lexington.daily[0], "precipAccumulation"):
+            precipSummary += ": " + "{0:.1f}".format((lexington.daily[0].precipAccumulation)) + '"'
         if precipSummary:
             offset = len(precipSummary) * 5
             textNImg.AddText(precipSummary.capitalize(), 170 - offset, 35, size=20, Id="Precipitation")
         textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
-        textNImg.AddText(lexington.hourly.summary, 10, 120, size=15, Id="Forecast")
+        textNImg.AddText(lexington.daily[0].summary, 10, 120, size=15, Id="Forecast")
         textNImg.AddText("Powered by Dark Sky", 145, 164, size=10, Id="Attribution")
         textNImg.WriteAll()
 except:
