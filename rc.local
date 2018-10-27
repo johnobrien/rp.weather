@@ -1,0 +1,28 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This file should replace rc.local on the Pi.
+#
+# Make sure to replace the variables with the real values.
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+export dark_sky_api_key=<PUT_REAL_DARK_SKY_API_KEY_HERE>
+
+printf "rc.local output written to /tmp/rc.local.log file\n"
+exec 1>>/tmp/rc.local.log 2>&1
+set -x
+sudo hwclock -s
+date
+cd /home/pi/rp.weather
+sudo -u pi --preserve-env /home/pi/rp.weather/startup.sh
+exit 0
+
