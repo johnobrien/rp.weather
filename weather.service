@@ -4,7 +4,7 @@
 
  [Service]
  Type=idle
- ExecStart=/path/to/startup.sh > /path/to/starup.log 2>>&1
+ ExecStart=/home/pi/rp.weather/startup.sh > /tmp/startup.log 2>&1
 
  [Install]
  WantedBy=multi-user.target
