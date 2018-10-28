@@ -15,7 +15,8 @@ if lsusb |grep 'Keyboard'; then
     papirus-write "Keyboard present. startup.sh exiting."
 else
     echo "Keyboard not present"
+    cd /home/pi/rp.weather
     sudo --preserve-env -u pi /usr/bin/python3 /home/pi/rp.weather/update_weather.py
-    sudo -u pi /usr/bin/python3 /home/pi/rp.weather/set_reboot.py
-    sudo poweroff
+    # sudo -u pi /usr/bin/python3 /home/pi/rp.weather/set_reboot.py
+    # sudo poweroff
 fi
