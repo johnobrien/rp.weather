@@ -70,14 +70,7 @@ schedule.every(30).seconds.do(update_weather)
 # schedule.every().day.at("4:00").do(update_weather)
 
 
-class ScheduleThread(threading.Thread):
-    def __init__(self, *pargs, **kwargs):
-        super().__init__(*pargs, daemon=True, name="scheduler", **kwargs)
-
-    def run(self):
-        while True:
-            schedule.run_pending()
-            time.sleep(schedule.idle_seconds())
-
-ScheduleThread().start()
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
