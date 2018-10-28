@@ -20,9 +20,8 @@ export dark_sky_api_key=<PUT_REAL_DARK_SKY_API_KEY_HERE>
 printf "rc.local output written to /tmp/rc.local.log file\n"
 exec 1>>/tmp/rc.local.log 2>&1
 set -x
-sudo hwclock -s
 date
 cd /home/pi/rp.weather
-sudo -u pi --preserve-env /home/pi/rp.weather/startup.sh
+nohup sudo -u pi --preserve-env /usr/bin/python3 /home/pi/rp.weather/update_weather.py &
 exit 0
 
