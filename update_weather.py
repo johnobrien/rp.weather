@@ -66,8 +66,8 @@ def update_weather():
         raise
 
 
-schedule.every(10).seconds.do(update_weather)
-# schedule.every().day.at("4:00").do(update_weather)
+# schedule.every(10).seconds.do(update_weather)
+schedule.every().day.at("4:00").do(update_weather)
 
 
 while True:
