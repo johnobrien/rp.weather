@@ -23,7 +23,7 @@ def format_temp(s):
 try:
 
     textNImg = PapirusComposite(False)
-    os.system("sudo hwclock --hctosys")
+    # os.system("sudo hwclock --hctosys")
     weekday = date.today()
 
     with forecast(key, *LEXINGTON) as lexington:
@@ -33,9 +33,9 @@ try:
         low = None
         high = None
         for hour in lexington.hourly[6:21]:
-            if hour.temperature < low or low is None:
+            if low is None or hour.temperature < low:
                 low = hour.temperature
-            if hour.temperature > high or high is None:
+            if high is None or hour.temperature > high:
                 high = hour.temperature
         textNImg.AddText(long_date_name, 10, 0, size=22, Id="Day Name")
         try:
