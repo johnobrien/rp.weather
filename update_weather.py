@@ -48,7 +48,7 @@ def update_weather():
             try:
                 textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
             except:
-                textNImg.AddText(lexington.daily.icon, 10,25, Id="Icon")
+                textNImg.AddText(lexington.daily[0].icon, 10,25, Id="Icon")
             precipSummary = getattr(lexington.daily[0], "precipType", None)
             if hasattr(lexington.daily[0], "precipAccumulation"):
                 precipSummary += ": " + "{0:.1f}".format((lexington.daily[0].precipAccumulation)) + '"'
