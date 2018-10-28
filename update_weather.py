@@ -3,9 +3,13 @@
 # If it runs into any problems it should fail gracefully.
 
 import os
-from darksky import forecast
 from datetime import date, timedelta, datetime
 
+import schedule
+import time
+import threading
+
+from darksky import forecast
 from papirus import PapirusComposite
 
 LEXINGTON = 42.4430, 71.2290
@@ -22,40 +26,58 @@ os.chdir("/home/pi/rp.weather")
 def format_temp(s):
     return str("{:.0f}".format(s))+u"\u00b0"
 
-try:
+def update_weather():
+    try:
 
-    textNImg = PapirusComposite(False)
-    # os.system("sudo hwclock --hctosys")
-    weekday = date.today()
+        textNImg = PapirusComposite(False)
+        # os.system("sudo hwclock --hctosys")
+        weekday = date.today()
 
-    with forecast(key, *LEXINGTON) as lexington:
-        long_date_name = date.strftime(weekday, '%A, %b %d')
-        prefix = "./assets/icons/"
-        path = prefix + lexington.daily.icon + ".bmp"
-        low = None
-        high = None
-        for hour in lexington.hourly[6:21]:
-            if low is None or hour.temperature < low:
-                low = hour.temperature
-            if high is None or hour.temperature > high:
-                high = hour.temperature
-        textNImg.AddText(long_date_name, 10, 0, size=22, Id="Day Name")
-        try:
-            textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
-        except:
-            textNImg.AddText(lexington.daily.icon, 10,25, Id="Icon")
-        precipSummary = getattr(lexington.daily[0], "precipType", None)
-        if hasattr(lexington.daily[0], "precipAccumulation"):
-            precipSummary += ": " + "{0:.1f}".format((lexington.daily[0].precipAccumulation)) + '"'
-        if precipSummary:
-            offset = len(precipSummary) * 5
-            textNImg.AddText(precipSummary.capitalize(), 170 - offset, 35, size=20, Id="Precipitation")
-        textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
-        textNImg.AddText(lexington.daily[0].summary, 10, 120, size=15, Id="Forecast")
-        textNImg.AddText("Powered by Dark Sky", 145, 164, size=10, Id="Attribution")
+        with forecast(key, *LEXINGTON) as lexington:
+            long_date_name = date.strftime(weekday, '%A, %b %d')
+            prefix = "./assets/icons/"
+            path = prefix + lexington.daily.icon + ".bmp"
+            low = None
+            high = None
+            for hour in lexington.hourly[6:21]:
+                if low is None or hour.temperature < low:
+                    low = hour.temperature
+                if high is None or hour.temperature > high:
+                    high = hour.temperature
+            textNImg.AddText(long_date_name, 10, 0, size=22, Id="Day Name")
+            try:
+                textNImg.AddImg(path, 10, 25, (90,90), Id="Icon")
+            except:
+                textNImg.AddText(lexington.daily.icon, 10,25, Id="Icon")
+            precipSummary = getattr(lexington.daily[0], "precipType", None)
+            if hasattr(lexington.daily[0], "precipAccumulation"):
+                precipSummary += ": " + "{0:.1f}".format((lexington.daily[0].precipAccumulation)) + '"'
+            if precipSummary:
+                offset = len(precipSummary) * 5
+                textNImg.AddText(precipSummary.capitalize(), 170 - offset, 35, size=20, Id="Precipitation")
+            textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
+            textNImg.AddText(lexington.daily[0].summary, 10, 120, size=15, Id="Forecast")
+            textNImg.AddText("Powered by Dark Sky", 145, 164, size=10, Id="Attribution")
+            textNImg.WriteAll()
+    except:
+        textNImg.AddText("Error reaching Dark Sky API", 10, 10, Id="Error")
+        textNImg.AddText("{0}".format(weekday), 10, 60, Id="Date")
         textNImg.WriteAll()
-except:
-    textNImg.AddText("Error reaching Dark Sky API", 10, 10, Id="Error")
-    textNImg.AddText("{0}".format(weekday), 10, 60, Id="Date")
-    textNImg.WriteAll()
-    raise
+        raise
+
+
+schedule.every(30).seconds.do(update_weather)
+# schedule.every().day.at("4:00").do(update_weather)
+
+
+class ScheduleThread(threading.Thread):
+    def __init__(self, *pargs, **kwargs):
+        super().__init__(*pargs, daemon=True, name="scheduler", **kwargs)
+
+    def run(self):
+        while True:
+            schedule.run_pending()
+            time.sleep(schedule.idle_seconds())
+
+ScheduleThread().start()
+
