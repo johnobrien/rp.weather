@@ -2,5 +2,10 @@
 2. Run "curl -sSL https://pisupp.ly/papiruscode | sudo bash"
 3. Build and install py-smbusf as per the README.md in the py-smbusf directory.
 4. Run "sudo pip install -r requirements.txt" to install all the requirements to root for the machine in question.
-5. Reconfigure /etc/rc.local to launch the startup.sh script on startup, and enable rc.local if it was not already enabled.
+5. Copy the weather.service file to /lib/systemd/system/weather.service
+6. Sudo chmod 644 /lib/systemd/system/weather.service
+7. sudo systemctl daemon-reload
+8. sudo systemctl enable weather.service
+9. Sudo reboot
+
 
