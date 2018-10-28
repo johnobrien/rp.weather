@@ -1,0 +1,11 @@
+[Unit]
+ Description=Weather Update Service
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/path/to/startup.sh > /path/to/starup.log 2>>&1
+
+ [Install]
+ WantedBy=multi-user.target
+
