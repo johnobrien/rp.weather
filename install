@@ -4,3 +4,6 @@
 4. Run "sudo pip install -r requirements.txt" to install all the requirements to root for the machine in question.
 5. As per https://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session,
 run the script with nohup python3 update_weather.py &
+
+to kill it, https://stackoverflow.com/questions/17385794/how-to-get-the-process-id-to-kill-a-nohup-process
+
