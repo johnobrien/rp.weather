@@ -36,7 +36,7 @@ def update_weather():
         with forecast(key, *LEXINGTON) as lexington:
             long_date_name = date.strftime(weekday, '%A, %b %d')
             prefix = "./assets/icons/"
-            path = prefix + lexington.daily.icon + ".bmp"
+            path = prefix + lexington.daily[0].icon + ".bmp"
             low = None
             high = None
             for hour in lexington.hourly[6:21]:
