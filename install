@@ -2,5 +2,5 @@
 2. Run "curl -sSL https://pisupp.ly/papiruscode | sudo bash"
 3. Build and install py-smbusf as per the README.md in the py-smbusf directory.
 4. Run "sudo pip install -r requirements.txt" to install all the requirements to root for the machine in question.
-5. Run "sudo apt-get install gnome-schedule" to install Scheduled Tasks under system tools.
-6. Use Scheduled tasks to set when you want update_weather.py to run.
+5. As per https://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session,
+run the script with nohup python3 update_weather.py &
