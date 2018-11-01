@@ -72,6 +72,6 @@ schedule.every().day.at("17:00").do(update_weather)
 
 
 while True:
-    schedule.run_continously()
+    schedule.run_pending()
     time.sleep(1)
 
