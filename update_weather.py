@@ -5,10 +5,6 @@
 import os
 from datetime import date, timedelta, datetime
 
-import schedule
-import time
-import threading
-
 from darksky import forecast
 from papirus import PapirusComposite
 
@@ -57,6 +53,7 @@ def update_weather():
                 textNImg.AddText(precipSummary.capitalize(), 170 - offset, 35, size=20, Id="Precipitation")
             textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
             textNImg.AddText(lexington.daily[0].summary, 10, 120, size=15, Id="Forecast")
+            textNImg.AddText("5:01 PM", 10, 164, size=10, Id="Time")
             textNImg.AddText("Powered by Dark Sky", 145, 164, size=10, Id="Attribution")
             textNImg.WriteAll()
     except:
@@ -65,13 +62,5 @@ def update_weather():
         textNImg.WriteAll()
         raise
 
-
-# schedule.every(10).seconds.do(update_weather)
-schedule.every().day.at("6:00").do(update_weather)
-schedule.every().day.at("17:00").do(update_weather)
-
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-
+if __name__ == "__main__":
+    update_weather()
