@@ -8,7 +8,7 @@ from datetime import date, timedelta, datetime
 from darksky import forecast
 from papirus import PapirusComposite
 
-LEXINGTON = 42.4430, 71.2290
+LEXINGTON = 42.4430, -71.2290
 
 key = os.getenv("dark_sky_api_key")
 if not key:
@@ -36,6 +36,7 @@ def update_weather():
             low = None
             high = None
             for hour in lexington.hourly[6:21]:
+                print(hour.temperature)
                 if low is None or hour.temperature < low:
                     low = hour.temperature
                 if high is None or hour.temperature > high:
