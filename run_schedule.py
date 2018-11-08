@@ -4,7 +4,7 @@ import threading
 
 from update_weather import update_weather
 
-schedule.every().hours.do(update_weather)
+schedule.every().hour.do(update_weather)
 
 
 while True:
