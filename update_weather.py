@@ -50,7 +50,8 @@ def update_weather():
             if hasattr(lexington.daily[0], "precipAccumulation"):
                 precipSummary += ": " + "{0:.1f}".format((lexington.daily[0].precipAccumulation)) + '"'
             if precipSummary:
-                precipSummary = lexington.daily[0].precipProbability + "% " + precipSummary
+                chance = "{0:.0%}".format(lexington.daily[0].precipProbability)
+                precipSummary = chance + "% " + precipSummary
                 offset = len(precipSummary) * 5
                 textNImg.AddText(precipSummary.capitalize(), 170 - offset, 35, size=20, Id="Precipitation")
             textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
