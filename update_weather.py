@@ -51,9 +51,9 @@ def update_weather():
                 precipSummary += ": " + "{0:.1f}".format((lexington.daily[0].precipAccumulation)) + '"'
             if precipSummary:
                 chance = "{0:.0%}".format(lexington.daily[0].precipProbability)
-                precipSummary = chance + "% " + precipSummary
+                precipSummary = chance + precipSummary.capitalize()
                 offset = len(precipSummary) * 5
-                textNImg.AddText(precipSummary.capitalize(), 170 - offset, 35, size=20, Id="Precipitation")
+                textNImg.AddText(precipSummary, 170 - offset, 35, size=20, Id="Precipitation")
             textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
             textNImg.AddText(lexington.daily[0].summary, 10, 120, size=15, Id="Forecast")
             textNImg.AddText(datetime.now().strftime("%I:%M%p"), 10, 164, size=10, Id="Time")
