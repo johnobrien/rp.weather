@@ -48,7 +48,7 @@ def update_weather():
                 textNImg.AddText(lexington.daily[0].icon, 10,25, Id="Icon")
             precipSummary = getattr(lexington.daily[0], "precipType", None)
             if hasattr(lexington.daily[0], "precipAccumulation"):
-                precipSummary += ": " + "{0:.1f}".format((lexington.daily[0].precipAccumulation)) + '"'
+                precipSummary += ": " + "{0:.0f}".format(round(lexington.daily[0].precipAccumulation)) + '"'
             if precipSummary:
                 chance = "{0:.0%}".format(lexington.daily[0].precipProbability)
                 precipSummary = " ".join([chance, precipSummary.capitalize()])
