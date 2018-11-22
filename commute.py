@@ -1,22 +1,21 @@
 import os
 
 import googlemaps
-from datetime import datetime
+import datetime
 
 
 gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API_KEY'))
 
-# Geocoding an address
-geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
+today = datetime.datetime.today()
 
-# Look up an address with reverse geocoding
-reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
+arrival_time = datetime.datetime.replace(today, hour=9)
 
-# Request directions via public transit
-now = datetime.now()
-result = gmaps.distance_matrix("Sydney Town Hall",
-                                     "Parramatta, NSW",
-                                     mode="transit",
-                                     departure_time=now)
+# Currently not working...
+print(arrival_time)
 
-print(result['rows'][0]['elements'][0]['duration'])
+result = gmaps.distance_matrix(origins=os.getenv('HOME_POSTAL_ADDRESS'),
+                                     destinations=os.getenv('WORK_POSTAL_ADDRESS'),
+                                     mode="driving",
+                                     arrival_time=arrival_time)
+
+secs = result['rows'][0]['elements'][0]['duration']['value']
