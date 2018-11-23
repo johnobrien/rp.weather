@@ -1,12 +1,12 @@
 import schedule
 import time
-import threading
+
 
 from update_weather import update_weather
 
-schedule.every().day.at("6:00").do(update_weather)
-schedule.every().day.at("7:00").do(update_weather)
-schedule.every().day.at("8:00").do(update_weather)
+schedule.every().day.at("6:00").do(update_weather, get_commute=True)
+schedule.every().day.at("7:00").do(update_weather, get_commute=True)
+schedule.every().day.at("8:00").do(update_weather, get_commute=True)
 schedule.every().day.at("9:00").do(update_weather)
 schedule.every().day.at("10:00").do(update_weather)
 schedule.every().day.at("11:00").do(update_weather)
@@ -26,4 +26,3 @@ schedule.every().day.at("22:00").do(update_weather)
 while True:
     schedule.run_pending()
     time.sleep(1)
-
