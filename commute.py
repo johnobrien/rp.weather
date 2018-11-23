@@ -8,10 +8,7 @@ gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API_KEY'))
 
 today = datetime.datetime.today()
 
-arrival_time = datetime.datetime.replace(today, hour=9)
-
-# Currently not working...
-print(arrival_time)
+arrival_time = datetime.datetime.replace(today, hour=9, minute=00)
 
 result = gmaps.distance_matrix(origins=os.getenv('HOME_POSTAL_ADDRESS'),
                                      destinations=os.getenv('WORK_POSTAL_ADDRESS'),
@@ -19,3 +16,7 @@ result = gmaps.distance_matrix(origins=os.getenv('HOME_POSTAL_ADDRESS'),
                                      arrival_time=arrival_time)
 
 secs = result['rows'][0]['elements'][0]['duration']['value']
+
+departure_time = arrival_time - datetime.timedelta(seconds=secs)
+
+print("{d.hour}:{d.minute:02}".format(d=departure_time))
