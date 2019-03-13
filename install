@@ -6,4 +6,7 @@
 in the file.
 6. Restart the pi. Rc.local should export the dark sky api key, and the weather should update at 6 AM and 5 PM.
 
+7. If run_schedule.py doesn't start automatically, login to the pi in question, and then execute tmux. Execute "python3 run_schedule.py",
+and then detach it by typing Ctrl + b and then d, and then logging out.
+
 Currently the weather is set for Lexington, MA. Update lattitude and longitude as necessary.
