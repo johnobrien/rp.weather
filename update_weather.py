@@ -8,8 +8,6 @@ from datetime import date, datetime
 from darksky import forecast
 from papirus import PapirusComposite
 
-from commute import commute
-
 LEXINGTON = 42.4430, -71.2290
 
 key = os.getenv("dark_sky_api_key")
