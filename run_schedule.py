@@ -1,23 +1,7 @@
 import schedule
-import time, functools
+import time
 
-def catch_exceptions():
-    def catch_exceptions_decorator(job_func):
-        @functools.wraps(job_func)
-        def wrapper(*args, **kwargs):
-            try:
-                return job_func(*args, **kwargs)
-            except:
-                import traceback
-                print(traceback.format_exc())
-        return wrapper
-    return catch_exceptions_decorator
-
-
-from update_weather import update_weather
-
-uw = catch_exceptions(update_weather)
-
+uw = update_weather
 
 schedule.every().day.at("6:00").do(uw)
 schedule.every().day.at("7:00").do(uw)

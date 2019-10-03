@@ -66,7 +66,6 @@ def update_weather():
         textNImg.AddText("Error reaching Dark Sky API", 10, 10, Id="Error")
         textNImg.AddText("{0}".format(weekday), 10, 60, Id="Date")
         textNImg.WriteAll()
-        raise
 
 
 if __name__ == "__main__":
