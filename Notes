@@ -35,3 +35,8 @@ update_weather.py directly, it works just fine. Why would that be the case?
 
 So, the current problem is, the icon that is being displayed RIGHT NOW is for "snow". But it is
 not going to snow... so what is up with that?
+
+10/2/2019
+
+Am trying starting the scheduler from a service using instructions found here: https://www.raspberrypi.org/documentation/linux/usage/systemd.md
+
