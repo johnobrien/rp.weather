@@ -1,6 +1,8 @@
 import schedule
 import time
 
+from update_weather import update_weather
+
 uw = update_weather
 
 schedule.every().day.at("6:00").do(uw)
