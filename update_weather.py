@@ -23,7 +23,7 @@ def format_temp(s):
     return str("{:.0f}".format(s))+u"\u00b0"
 
 
-def update_weather(get_commute=False):
+def update_weather():
     try:
 
         textNImg = PapirusComposite(False)
@@ -55,8 +55,7 @@ def update_weather(get_commute=False):
                 precipSummary = " ".join([chance, precipSummary.capitalize()])
                 offset = len(precipSummary) * 5
                 textNImg.AddText(precipSummary, 170 - offset, 35, size=20, Id="Precipitation")
-            if get_commute:
-                print(commute())
+
 
             textNImg.AddText(format_temp(low) + "-" + format_temp(high), 110, 65, size=35, Id="TempRange")
             textNImg.AddText(lexington.daily[0].summary, 10, 120, size=15, Id="Forecast")
@@ -71,4 +70,4 @@ def update_weather(get_commute=False):
 
 
 if __name__ == "__main__":
-    update_weather(get_commute=True)
+    update_weather()
