@@ -22,6 +22,6 @@ exec 1>>/tmp/rc.local.log 2>&1
 set -x
 date
 cd /home/pi/rp.weather
-nohup sudo -u pi --preserve-env /usr/bin/python3 /home/pi/rp.weather/update_weather.py &
+nohup sudo -u pi --preserve-env /usr/bin/python3 /home/pi/rp.weather/run_schedule.py &
 exit 0
 
