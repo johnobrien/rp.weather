@@ -41,6 +41,7 @@ schedule.every().day.at("22:00").do(uw)
 
 
 while True:
+    uw()
     schedule.run_pending()
     time.sleep(1)
 
