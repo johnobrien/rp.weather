@@ -3,7 +3,7 @@ Description=update weather
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 -u run_schedule.py
+ExecStart=/usr/bin/python3 -u update_weather.py
 WorkingDirectory=/home/pi/rp.weather
 StandardOutput=inherit
 StandardError=inherit
