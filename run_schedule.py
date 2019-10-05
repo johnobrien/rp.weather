@@ -24,8 +24,11 @@ schedule.every().day.at("21:00").do(uw)
 schedule.every().day.at("22:00").do(uw)
 
 
+# run once to update on start
+uw()
+
+
 while True:
-    uw()
     schedule.run_pending()
     time.sleep(1)
 
