@@ -10,12 +10,14 @@ from papirus import PapirusComposite
 
 LEXINGTON = 42.4430, -71.2290
 
-key = os.getenv("dark_sky_api_key")
-if not key:
-    raise Exception("DarkSky API Key not set. Set DarkSky environment variable in the local environment and try again.")
+try:
+    file = open("/home/pi/dark_sky_api_key")
+    key = file.read()
+    if not key:
+        raise Exception("DarkSky API Key file not found. Create a text file called dark_sky_api_key with the key inside it in the /home/pi directory and try again.")
 
-''' Possible lexington.daily.icon values:
-clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.'''
+    ''' Possible lexington.daily.icon values:
+    clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.'''
 
 os.chdir("/home/pi/rp.weather")
 
