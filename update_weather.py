@@ -12,7 +12,8 @@ LEXINGTON = 42.4430, -71.2290
 
 try:
     file = open("/home/pi/dark_sky_api_key")
-    key = file.read()
+    key = file.read().rstrip()
+    print(key)
     if not key:
         raise Exception("DarkSky API Key file not found. Create a text file called dark_sky_api_key with the key inside it in the /home/pi directory and try again.")
 
@@ -34,7 +35,7 @@ def update_weather():
         textNImg = PapirusComposite(False)
         # os.system("sudo hwclock --hctosys")
         weekday = date.today()
-
+        print(key)
         with forecast(key, *LEXINGTON) as lexington:
             long_date_name = date.strftime(weekday, '%A, %b %d')
             prefix = "./assets/icons/"
