@@ -2,11 +2,11 @@
 2. Run "curl -sSL https://pisupp.ly/papiruscode | sudo bash"
 3. Build and install py-smbusf as per the README.md in the py-smbusf directory.
 4. Run "sudo pip install -r requirements.txt" to install all the requirements to root for the machine in question.
-5. Replace/amend rc.local in /etc with a copy of rc.local from this repo, setting your dark sky API key
-in the file.
-6. Restart the pi. Rc.local should export the dark sky api key, and the weather should update at 6 AM and 5 PM.
-
-7. If run_schedule.py doesn't start automatically, login to the pi in question, and then execute tmux. Execute "python3 run_schedule.py",
+5. Create a file called dark_sky_api_key which exists in the /home/pi directory, and only contains the dark sky api key.
+6. Navigate to the rp.weather directory, and execute sudo cp weather.weather /etc/systemd/system/weather.service
+7. Execute sudo systemctl daemon-reload
+8. Execute systemctl enable weather.service. The update_weather script should now run from 6 AM to 10 PM and also on boot up.
+9. If run_schedule.py doesn't start automatically, login to the pi in question, and then execute tmux. Execute "python3 run_schedule.py",
 and then detach it by typing Ctrl + b and then d (make sure you are not pressing the Ctrl
  key when you press the d key) and then logging out.
 
