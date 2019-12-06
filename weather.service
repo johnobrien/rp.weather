@@ -3,6 +3,7 @@ Description=update weather
 After=network.target
 
 [Service]
+Environment=dark_sky_api_key=/home/pi/dark_sky_api_key
 ExecStart=/usr/bin/python3 update_weather.py
 WorkingDirectory=/home/pi/rp.weather
 StandardOutput=inherit
