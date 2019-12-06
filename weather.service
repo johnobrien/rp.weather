@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=idle
-Environment=dark_sky_api_key=/home/pi/dark_sky_api_key
+EnvironmentFile=dark_sky_api_key=/home/pi/dark_sky_api_key
 ExecStart=/usr/bin/python3 run_schedule.py
 WorkingDirectory=/home/pi/rp.weather
 StandardOutput=inherit
