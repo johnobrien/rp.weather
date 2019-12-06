@@ -19,6 +19,9 @@ try:
     ''' Possible lexington.daily.icon values:
     clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.'''
 
+except :
+    raise
+
 os.chdir("/home/pi/rp.weather")
 
 def format_temp(s):
