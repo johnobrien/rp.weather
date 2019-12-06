@@ -40,3 +40,6 @@ not going to snow... so what is up with that?
 
 Am trying starting the scheduler from a service using instructions found here: https://www.raspberrypi.org/documentation/linux/usage/systemd.md
 
+12/6/2019
+
+If you want to check the logs for whether the weather.service started successfully, run sudo journalctl -u weather.service. i think I got it to start on startup, we'll see.
